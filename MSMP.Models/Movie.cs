@@ -15,6 +15,5 @@ namespace MSMP.Models
         public string Title { get; set; }
         public string Genre { get; set; }
         public int Duration { get; set; }
-        public string KatiAkoma { get; set; }
     }
 }
