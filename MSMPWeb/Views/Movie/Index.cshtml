@@ -1,0 +1,14 @@
+﻿@model List<Movie>
+
+
+<h1>Index in Movies Works</h1>
+
+
+<h2>@foreach (var movie in Model)
+    {
+        <hr />
+        @movie.MovieId; <br /><br />
+        @movie.Title; <br /><br />
+        @movie.Genre; <br />
+    }
+</h2>
