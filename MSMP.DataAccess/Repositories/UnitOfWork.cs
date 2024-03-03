@@ -1,4 +1,5 @@
-﻿using MSMP.DataAccess.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MSMP.DataAccess.Data;
 using MSMP.DataAccess.Repositories.IRepositories;
 using System;
 using System.Collections.Generic;
@@ -10,17 +11,17 @@ namespace MSMP.DataAccess.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private ApplicationDbContext _db;
+        private ApplicationDbContext _context;
         public IMovieRepository Movie { get; private set; }
-        public UnitOfWork(ApplicationDbContext db)
+        public UnitOfWork(ApplicationDbContext context)
         {
-            _db = db;
-            Movie = new MovieRepository(_db);
+            _context = context;
+            Movie = new MovieRepository(_context);
         }
 
         public void Save()
         {
-            _db.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

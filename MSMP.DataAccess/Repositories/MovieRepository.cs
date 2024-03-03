@@ -1,4 +1,5 @@
-﻿using MSMP.DataAccess.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MSMP.DataAccess.Data;
 using MSMP.DataAccess.Repositories.IRepositories;
 using MSMP.Models;
 using System;
@@ -11,10 +12,11 @@ namespace MSMP.DataAccess.Repositories
 {
     public class MovieRepository : Repository<Movie>, IMovieRepository
     {
-        private ApplicationDbContext _db;
-        public MovieRepository(ApplicationDbContext db) : base(db)
+        public MovieRepository(ApplicationDbContext context) : base(context) { }
+        public ApplicationDbContext ApplicationDbContext => Context as ApplicationDbContext;
+        public void Update()
         {
-            _db = db;
+
         }
     }
 }

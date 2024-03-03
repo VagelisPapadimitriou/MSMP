@@ -12,26 +12,24 @@ namespace MSMP.DataAccess.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly ApplicationDbContext _db;
-        internal DbSet<T> dbSet;
+        protected readonly DbContext Context;
 
-        public Repository(ApplicationDbContext db)
+        public Repository(ApplicationDbContext context)
         {
-            _db = db;
-            this.dbSet = _db.Set<T>();
+            Context = context;
         }
 
         public IEnumerable<T> GetAll()
         {
-            IQueryable<T> query = dbSet;
-            return query.ToList();
+            return Context.Set<T>().ToList();
         }
 
         public T Get(Expression<Func<T, bool>> filter)
         {
-            IQueryable<T> query = dbSet;
-            query= query.Where(filter);
-            return query.FirstOrDefault();
+            //IQueryable<T> query = dbSet;
+            //query= query.Where(filter);
+            //return query.FirstOrDefault();
+            return null;
         }
     }
 }

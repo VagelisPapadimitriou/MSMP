@@ -17,6 +17,7 @@ namespace MSMPWeb.Controllers
         {
             List<Movie> movies = _unitOfWork.Movie.GetAll().ToList();
             return View(movies);
+
         }
     }
 }
