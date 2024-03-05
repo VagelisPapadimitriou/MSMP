@@ -1,14 +1,79 @@
 ﻿@model List<Movie>
 
 
-<h1>Index in Movies Works</h1>
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">All Movies</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-12">
+                <table id="tblData" class="table table-bordered table-striped" style="width:100% ">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>ReleaseDate</th>
+                            <th>Genre</th>
+                            <th>Duration</th>
+                            <th>Rating</th>
+                            <th>Description</th>
+                            <th>ImageUrl</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-<h2>@foreach (var movie in Model)
-    {
-        <hr />
-        @movie.MovieId; <br /><br />
-        @movie.Title; <br /><br />
-        @movie.Genre; <br />
-    }
-</h2>
+
+
+
+
+
+<br />
+<br />
+<hr />
+<br />
+<br />
+<table id="tblData" class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>ReleaseDate</th>
+            <th>Genre</th>
+            <th>Duration</th>
+            <th>Rating</th>
+            <th>Description</th>
+            <th>ImageUrl</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.ReleaseDate.ToString("d MMM yyyy")</td>
+                <td>@movie.Genre</td>
+                <td>@movie.Duration min</td>
+                <td>@movie.Rating %</td>
+                <td>@movie.Description</td>
+                <td><img src="@Url.Content(movie.ImageUrl)" alt="Movie Image" style="width: 100px; height: auto;" /></td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+
+@section Scripts {
+    <script src="~/js/movie.js"></script>
+}

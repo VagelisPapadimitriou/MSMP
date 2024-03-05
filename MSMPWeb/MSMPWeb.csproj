@@ -24,4 +24,8 @@
     <ProjectReference Include="..\MSMP.Models\MSMP.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

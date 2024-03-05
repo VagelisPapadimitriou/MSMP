@@ -12,12 +12,32 @@ namespace MSMPWeb.Controllers
             _unitOfWork = unitOfWork;
         }
 
-
         public IActionResult Index()
         {
-            List<Movie> movies = _unitOfWork.Movie.GetAll().ToList();
-            return View(movies);
+            List<Movie> allMovies = _unitOfWork.Movie.GetAll().ToList();
+
+            return View(allMovies);
+        }
+
+
+
+
+
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Movie> allMovies = _unitOfWork.Movie.GetAll().ToList();
+            return Json(new { data = allMovies });
 
         }
+
+        #endregion
+
+
+
+
+
     }
 }
