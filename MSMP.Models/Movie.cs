@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MSMP.Models
 {
+
+
+    //na valw swsta properties
     public class Movie
     {
         [Key]

@@ -1,5 +1,7 @@
+using ImportTMDB;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using MSMP.DataAccess.Data;
 using MSMP.DataAccess.Repositories;
 using MSMP.DataAccess.Repositories.IRepositories;
@@ -12,6 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection")));
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<TMDBRequester>();
 
 var app = builder.Build();
 
