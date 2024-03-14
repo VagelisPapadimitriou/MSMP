@@ -19,7 +19,7 @@ namespace ImportTMDB
     {
         private List<TmdbMovieIdentifier> _tmdbMovieIds;
 
-        public async Task<IEnumerable<TmdbMovieIdentifier>> GetTmdbMovieIdsFromJsonUrl()
+        public async Task<IEnumerable<int>> GetTmdbMovieIdsFromJsonUrl()
         {
 
             // Get the current date
@@ -59,7 +59,7 @@ namespace ImportTMDB
                         _tmdbMovieIds.Add(deserializedMovieId);
                     }
 
-                    return _tmdbMovieIds;
+                    return _tmdbMovieIds.Select(tmdbMovieId => tmdbMovieId.Id);
                 }
             }
             catch (Exception ex)
@@ -78,18 +78,20 @@ namespace ImportTMDB
 
     public class MovieRequester
     {
-        public async Task<IEnumerable<TmdbMovie>> GetTmdbMovieDetails(IEnumerable<TmdbMovieIdentifier> tmdbMovieIds)
+        public async Task<IEnumerable<TmdbMovie>> GetTmdbMovieDetails(IEnumerable<int> tmdbMovieIds)
         {
             List<TmdbMovie> tmdbMovies = new List<TmdbMovie>();
 
-            foreach (var movie_id in tmdbMovieIds)
+            int[] myArray = { 2 };
+
+            foreach (var movieId in myArray)
             {
                 using (var client = new HttpClient())
                 {
                     var request = new HttpRequestMessage
                     {
                         Method = HttpMethod.Get,
-                        RequestUri = new Uri($"https://api.themoviedb.org/3/movie/{movie_id}?language=en-US"),
+                        RequestUri = new Uri($"https://api.themoviedb.org/3/movie/{movieId}?language=en-US"),
                         Headers =
                 {
                     { "accept", "application/json" },
